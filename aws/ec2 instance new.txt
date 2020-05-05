@@ -1,0 +1,58 @@
+    1  sudo apt-get update
+    2  sudo apt-get install libssl-dev g++ make
+    3  wget https://nodejs.org/dist/v10.15.1/node-v10.15.1.tar.gz
+    4  ls
+    5  tar -xvf node-v10.15.1.tar.gz
+    6  ls
+    7  cd node-v10.15.1/
+    8  ls
+    9  ./configure && make && sudo make install
+   10  sudo apt-get install python
+   11  ./configure && make && sudo make install
+   12  Í„
+   13  ls
+   14  cd node-v10.15.1/
+   15  ls
+   16  ./configure && make && sudo make install
+   17  Í„
+   18  ls
+   19  cd ..
+   20  pwd
+   21  sudo /etc/sudoers
+   22  ls
+   23  ~
+   24  cd ..
+   25  ls
+   26  cd ..
+   27  ls
+   28  sudo nano /etc/sudoers
+   29  sudo npm install pm2 -g
+   30  pm2 -v
+   31  pm2 startup amazon
+   32  sudo env PATH=$PATH:/usr/local/bin /usr/local/lib/node_modules/pm2/bin/pm2 startup amazon -u ubuntu --hp /home/ubuntu
+   33  pm2 -v
+   34  ls
+   35  cd bin
+   36  ls
+   37  cd..
+   38  cd ..
+   39  ls
+   40  cd home
+   41  ls
+   42  cd ubuntu
+   43  ls
+   44  cd Submarines/
+   45  ls
+   46  sudo pm2 startup ubuntu
+   47  cd ..
+   48  ls
+   49  node app.js
+   50  sudo node app.js
+   51  node app.js
+   52  sudo pm2 start app.js
+   53  pm2 ls
+   54  ls
+   55  cd Sub4000
+   56  ls
+   57  sudo pm2 start app.js gold4000
+   58  pm2 ls

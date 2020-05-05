@@ -6,12 +6,11 @@
   "dependencies": {
     "alea": "^1.0.0",
     "body-parser": "^1.19.0",
-    "csvtojson": "^2.0.10",
     "express": "^4.16.4",
     "express-handlebars": "^3.0.0",
     "file-system": "^2.2.2",
     "handlebars": "^4.7.6",
-    "nodemon": "^1.19.4",
+    "nodemon": "^1.18.11",
     "path": "^0.12.7",
     "querystring": "^0.2.0",
     "serve-index": "^1.9.1"
