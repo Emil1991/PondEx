@@ -1,27 +1,27 @@
 console.log("finale");
-var prng = new Alea();
-var gameSettings = {};
+let prng = new Alea();
+let gameSettings = {};
 
-var gameStarted = false;
-var numberOfMissedFishes = 0;
-var generateFishStop = false;
-var clickedOnFish = false;
-var lockFishClick = false;
-var clickedOnChangePond = false;
-var missedFishes = 0;
-var selectedFishType = [];
-var fishArray;
-var probabilityArray;
-var playerID;
-var timer;
-var missedMoreThan = false;
-var pondIntroTime = 0;
-var currentSelectedPond;
-var historyOfPonds=["Selected ponds in the game","======="]+"\n";
+let gameStarted = false;
+let numberOfMissedFishes = 0;
+let generateFishStop = false;
+let clickedOnFish = false;
+let lockFishClick = false;
+let clickedOnChangePond = false;
+let missedFishes = 0;
+let selectedFishType = [];
+let fishArray;
+let probabilityArray;
+let playerID;
+let timer;
+let missedMoreThan = false;
+let pondIntroTime = 0;
+let currentSelectedPond;
+let historyOfPonds=["Selected ponds in the game","======="]+"\n";
 
-var ponds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-var pondTypes = ["RD", "RT", "N"];
-var pondProbabilities = {
+let ponds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+let pondTypes = ["RD", "RT", "N"];
+let pondProbabilities = {
   "RD": {
     "left": 1,
     "right": 1
@@ -35,41 +35,41 @@ var pondProbabilities = {
     "right": 1
   }
 }
-var newPondSource = "Ponds";
-var newPondTarget = "Origin";
+let newPondSource = "Ponds";
+let newPondTarget = "Origin";
 
-var fishApperSetTimeOut = 0;
-var fishDisApperSetTimeOut = 0;
-var waitForPondApperThenGenerateFishSetTimeOut;
-var changeCurrentPondGamePropsSetTimeOut;
-var containerFadeOutSetTimeOut;
-var generateFirstFishSetTimeOut;
+let fishApperSetTimeOut = 0;
+let fishDisApperSetTimeOut = 0;
+let waitForPondApperThenGenerateFishSetTimeOut;
+let changeCurrentPondGamePropsSetTimeOut;
+let containerFadeOutSetTimeOut;
+let generateFirstFishSetTimeOut;
 
-var gameTimer;
-var startGameTime;
-var endGameTime;
-var currentPond;
-var currentPondType;
-var currentPondNumberOfFishes;
-var currentPondInitialNumberOfFishes;
-var currentPondStartingTime;
-var pondTimeUntilNow; //time on current pond
-var numberOfPondsUntilNow = 0;
-var numOfFishesUntilNow = 0;
-var lastNumberOfFishes = 0;
-var currentFishType;
-var currentFishEV;
-var currentFishLatency; // moment curr fish fade in minus moment last fish fade out
-var currentFishShowUp; //moment fish fade in
-var lastFadeOff; //moment last fish fade off
-var giveUpTime = -1; //time between lastFadeOff and clicking change pond
-var currentFishCatchTime;
-var currentPondTotalOutcome = 0;
-var totalPondsOutcome = 0;
+let gameTimer;
+let startGameTime;
+let endGameTime;
+let currentPond;
+let currentPondType;
+let currentPondNumberOfFishes;
+let currentPondInitialNumberOfFishes;
+let currentPondStartingTime;
+let pondTimeUntilNow; //time on current pond
+let numberOfPondsUntilNow = 0;
+let numOfFishesUntilNow = 0;
+let lastNumberOfFishes = 0;
+let currentFishType;
+let currentFishEV;
+let currentFishLatency; // moment curr fish fade in minus moment last fish fade out
+let currentFishShowUp; //moment fish fade in
+let lastFadeOff; //moment last fish fade off
+let giveUpTime = -1; //time between lastFadeOff and clicking change pond
+let currentFishCatchTime;
+let currentPondTotalOutcome = 0;
+let totalPondsOutcome = 0;
 
-var gameOutputBody;
-var gameOutput;
-var fishCounter = {
+let gameOutputBody;
+let gameOutput;
+let fishCounter = {
   golden: 0,
   blue: 0,
   green: 0,
@@ -77,7 +77,7 @@ var fishCounter = {
   gray: 0
 }
 
-var currentPondFishProps = {
+let currentPondFishProps = {
   golden: {
     probability: 0,
     ev: 0,
@@ -115,7 +115,7 @@ var currentPondFishProps = {
   }
 };
 
-var pondTypesDist = {
+let pondTypesDist = {
   RD: {
     Dist: 0,
     Ponds: [],
@@ -134,6 +134,7 @@ var pondTypesDist = {
   Alive: 3
 
 };
+let airTime=0;
 
 
 
@@ -246,7 +247,7 @@ $("#startGame").click(() => {
     $("#page5").fadeOut(300, () => {
       $("#wrapper").fadeIn(250, () => {
         startGame();
-        // var clock = setInterval(() => {
+        // let clock = setInterval(() => {
         //   clockTick();
         // }, 1000);
       });
@@ -347,7 +348,8 @@ function generateGiveUpTimeOutput() {
       "TotalOutcome",
       totalPondsOutcome
     ] +
-    "\n";
+    "\n"+["Total air",airTime]+
+      "\n";
 }
 
 function generateOutput() {
@@ -401,6 +403,194 @@ function generateOutput() {
 
   // console.log("current game output body:", gameOutputBody);
 }
+function generateFirstFish() {
+  // console.log("entered generateFish()");
+  if (currentPondNumberOfFishes == 0) {
+    //ran out of fishes
+    return;
+  } else if (generateFishStop == true) {
+    return;
+  }
+
+  ///////////////// GENERATE FISH /////////////////
+
+  let fishX = Math.floor(Math.random() * 60 + 10);
+  fishX += "%";
+  let fishY = Math.floor(Math.random() * 60 + 10);
+  fishY += "%";
+
+  let selectedFish;
+
+  ///////////////// Randomize fish /////////////////
+
+  // assign selectedFish
+
+  if (currentPondType == "N") {
+    selectedFish = "green";
+    currentFishEV = currentPondFishProps.green.ev;
+  } else {
+    let randomFishIndex = prng();
+    // console.log("randomFishIndex generated:", randomFishIndex);
+
+    if (randomFishIndex <= currentPondFishProps.golden.probability) {
+      selectedFish = "golden";
+      currentFishEV = currentPondFishProps.golden.ev;
+    } else if (
+        between(
+            randomFishIndex,
+            currentPondFishProps.blue.left,
+            currentPondFishProps.blue.right
+        )
+    ) {
+      selectedFish = "blue";
+      currentFishEV = currentPondFishProps.blue.ev;
+    } else if (
+        between(
+            randomFishIndex,
+            currentPondFishProps.purple.left,
+            currentPondFishProps.purple.right
+        )
+    ) {
+      selectedFish = "purple";
+      currentFishEV = currentPondFishProps.purple.ev;
+    } else if (
+        between(
+            randomFishIndex,
+            currentPondFishProps.gray.left,
+            currentPondFishProps.gray.right
+        )
+    ) {
+      selectedFish = "gray";
+      currentFishEV = currentPondFishProps.gray.ev;
+    }
+  }
+
+  ////////////////////////////////////
+
+  // console.log("selectedFish after randomization:", selectedFish);
+
+  currentFishType = selectedFish;
+  numOfFishesUntilNow++;
+
+  currentFishLatency =
+      Number(gameSettings.fishPerSecondRatio) /
+      Number(currentPondNumberOfFishes);
+
+  if (currentPondFishProps[selectedFish].amount == 1) {
+    currentPondNumberOfFishes--;
+    currentPondFishProps[selectedFish].amount--;
+    fishArray.splice(randomFishIndex, 1);
+    foundFish = true;
+  } else {
+    currentPondNumberOfFishes--;
+    currentPondFishProps[selectedFish].amount--;
+    foundFish = true;
+  }
+
+
+  if (generateFishStop == true) {
+    return;
+  } else {
+    $("#" + selectedFish + "Fish").css("left", fishX);
+    $("#" + selectedFish + "Fish").css("top", fishY);
+
+    let fishDirection = Math.random();
+    if (fishDirection <= 0.5) {
+      fishDirection = -1;
+    } else {
+      fishDirection = 1;
+    }
+
+    $("#" + selectedFish + "Fish > img").css("transform", "scaleX(" + fishDirection + ")");
+  }
+
+
+    fishApperSetTimeOut = setTimeout(() => {
+      if (generateFishStop == true) {
+        return;
+      } else {
+        $("#" + selectedFish + "Fish").fadeIn(0, () => {
+          currentFishShowUp = new Date();
+          // console.log("fish fade in");
+          // POND FISH UPDATE
+
+          fishDisApperSetTimeOut = setTimeout(() => {
+            $("#" + selectedFish + "Fish").fadeOut(0, () => {
+              // console.log("fish fade out");
+              setTimeout(() => { //give some air
+                airTime+=100;
+                if (generateFishStop == true) {
+                  return;
+                } else { //generateFishStop==false
+                  if (clickedOnFish == false) {
+                    //need to update catch time to -1
+                    currentFishCatchTime = -1;
+                    pondTimeUntilNow = new Date() - currentPondStartingTime;
+                    generateOutput();
+                    // currentPondStartingTime = new Date();
+                  }
+
+                  if (clickedOnFish == false && clickedOnChangePond == false) {
+                    missedFishes++;
+                    $("#numberOfMissed").html(missedFishes);
+                    if (missedFishes == gameSettings.missingThreshold + 1) {
+                      // console.log("missed more than threshold,starting to decline");
+                      generateFishStop = true;
+                      missedMoreThan = true;
+                      $("#container").fadeOut(400, () => {
+                        $("#missedGameOver").css("display", "grid");
+                        $("#gameOver").css("display", "none");
+                        $("#cover").fadeIn(400);
+
+                        gameOutput = ["", playerID] +
+                            "\n" + ["PlayerDetails", playerID] +
+                            "\n" + ["GameCompleted", "declined"] +
+                            "\n" +historyOfPonds+ gameOutputBody;
+
+                        sendOutputToServer();
+                        // console.log("sent to server that declined");
+
+                        for (let i = 1; i < 999; i++) window.clearTimeout(i);
+                        for (let i = 1; i < 999; i++) window.clearInterval(i);
+
+                        // console.log("cleared all time out and intervals");
+                      });
+                    }
+
+                  } else if (clickedOnFish == true) {
+                    // user clicked on fish
+                    pondTimeUntilNow = new Date() - currentPondStartingTime;
+                    currentPondTotalOutcome += currentFishEV;
+                    totalPondsOutcome += currentFishEV;
+                    generateOutput();
+                    clickedOnFish = false;
+                    // currentPondStartingTime = new Date();
+                  } else if (clickedOnChangePond == true) {
+                    missedFishes = 0;
+                    $("#numberOfMissed").html(missedFishes);
+                  }
+
+                  lastNumberOfFishes = numOfFishesUntilNow;
+
+                  setTimeout(() => { //give some air
+                    if (generateFishStop == false) {
+                      airTime+=100;
+                      generateFish();
+                    }
+                  }, 100);
+                }
+              }, 100);
+            });
+          }, gameSettings.fishVisibilityTime * 1000);
+        });
+      }
+    }, (Number(gameSettings.fishPerSecondRatio) / Number(currentPondNumberOfFishes)) * 1000);
+
+    currentPondStartingTime = new Date();
+    lastFadeOff = new Date();
+    airTime=0;
+
+}
 
 function generateFish() {
   // console.log("entered generateFish()");
@@ -418,7 +608,7 @@ function generateFish() {
   let fishY = Math.floor(Math.random() * 60 + 10);
   fishY += "%";
 
-  var selectedFish;
+  let selectedFish;
 
   ///////////////// Randomize fish /////////////////
 
@@ -428,7 +618,7 @@ function generateFish() {
     selectedFish = "green";
     currentFishEV = currentPondFishProps.green.ev;
   } else {
-    var randomFishIndex = prng();
+    let randomFishIndex = prng();
     // console.log("randomFishIndex generated:", randomFishIndex);
 
     if (randomFishIndex <= currentPondFishProps.golden.probability) {
@@ -506,20 +696,22 @@ function generateFish() {
 
 
   setTimeout(() => {
+    airTime+=100;
     if (generateFishStop == true) return;
     fishApperSetTimeOut = setTimeout(() => {
       if (generateFishStop == true) {
         return;
       } else {
-        $("#" + selectedFish + "Fish").fadeIn(50, () => {
+        $("#" + selectedFish + "Fish").fadeIn(0, () => {
           currentFishShowUp = new Date();
           // console.log("fish fade in");
           // POND FISH UPDATE
 
           fishDisApperSetTimeOut = setTimeout(() => {
-            $("#" + selectedFish + "Fish").fadeOut(50, () => {
+            $("#" + selectedFish + "Fish").fadeOut(0, () => {
               // console.log("fish fade out");
               setTimeout(() => { //give some air
+                airTime+=100;
                 if (generateFishStop == true) {
                   return;
                 } else { //generateFishStop==false
@@ -551,8 +743,8 @@ function generateFish() {
                         sendOutputToServer();
                         // console.log("sent to server that declined");
 
-                        for (var i = 1; i < 999; i++) window.clearTimeout(i);
-                        for (var i = 1; i < 999; i++) window.clearInterval(i);
+                        for (let i = 1; i < 999; i++) window.clearTimeout(i);
+                        for (let i = 1; i < 999; i++) window.clearInterval(i);
 
                         // console.log("cleared all time out and intervals");
                       });
@@ -574,19 +766,17 @@ function generateFish() {
                   lastNumberOfFishes = numOfFishesUntilNow;
 
                   setTimeout(() => { //give some air
+                    airTime+=100;
                     if (generateFishStop == false) {
                       generateFish();
                     }
                   }, 100);
                 }
               }, 100);
-
-
             });
           }, gameSettings.fishVisibilityTime * 1000);
         });
       }
-
     }, (Number(gameSettings.fishPerSecondRatio) / Number(currentPondNumberOfFishes)) * 1000);
   }, 100);
 
@@ -616,8 +806,19 @@ function endGame() {
     $("#missedGameOver").css("display", "none");
     $("#cover").fadeIn(400);
 
-    for (var i = 1; i < 999; i++) window.clearTimeout(i);
+    for (let i = 1; i < 999; i++) window.clearTimeout(i);
   });
+}
+
+
+function initFirstPond(){
+  ////////////OUTPUT UPDATE////////////
+
+  numberOfPondsUntilNow++;
+  currentPondTotalOutcome = 0;
+  numOfFishesUntilNow = 0;
+
+  /////////////////////////////////////
 }
 
 function initNewPond() {
@@ -629,20 +830,20 @@ function initNewPond() {
 
   /////////////////////////////////////
 
-  changePond();
-  currentPondStartingTime = new Date();
-  waitForPondApperThenGenerateFishSetTimeOut = setTimeout(() => {
-    lastFadeOff = new Date();
-    generateFish();
-  }, 2 * 1000);
+  changePond(true);
+  // currentPondStartingTime = new Date();
+  // waitForPondApperThenGenerateFishSetTimeOut = setTimeout(() => {
+  //   lastFadeOff = new Date();
+  //   generateFish();
+  // }, 2 * 1000);
 }
 
 function startGame() {
   ///////////////////////////////////////////////////////////////////////////
   $("#fisherManLine").append(
-    "<svg><line id='fisherManLineSvg' x1='900' y1='0' x2='500' y2='500' style='stroke:rgb(0,0,0,0.5)'></line></svg>"
+    "<svg><line id='fisherManLineSvg' x1='900' y1='0' x2='500' y2='500' style='stroke:rgba(0,0,0,0.5)'></line></svg>"
   );
-  var animationTime = 4.5;
+  let animationTime = 4.5;
   let x1Position = $("#environment").outerWidth();
   let y1Position = $("#fishManSpace").outerHeight();
   $("#fisherManLineSvg").attr("x1", x1Position);
@@ -723,7 +924,7 @@ $("#goldenFish").click(() => {
   lockFishClick = true;
   clickedOnFish = true;
   currentFishCatchTime = new Date() - currentFishShowUp;
-  $("#goldenFish").fadeOut(300, () => {
+  $("#goldenFish").fadeOut(0, () => {
     lastFadeOff = new Date();
     if (fishCounter["golden"] == 0) { //no golden fish had been caught
       // console.log("golden is empty. appending");
@@ -750,7 +951,7 @@ $("#blueFish").click(() => {
   clickedOnFish = true;
   currentFishCatchTime = new Date() - currentFishShowUp;
 
-  $("#blueFish").fadeOut(300, () => {
+  $("#blueFish").fadeOut(0, () => {
     lastFadeOff = new Date();
 
     if (fishCounter["blue"] == 0) { //no blue fish had been caught
@@ -780,7 +981,7 @@ $("#greenFish").click(() => {
   clickedOnFish = true;
   currentFishCatchTime = new Date() - currentFishShowUp;
 
-  $("#greenFish").fadeOut(300, () => {
+  $("#greenFish").fadeOut(0, () => {
     lastFadeOff = new Date();
 
     if (fishCounter["green"] == 0) { //no green fish had been caught
@@ -810,7 +1011,7 @@ $("#purpleFish").click(() => {
   clickedOnFish = true;
   currentFishCatchTime = new Date() - currentFishShowUp;
 
-  $("#purpleFish").fadeOut(300, () => {
+  $("#purpleFish").fadeOut(0, () => {
     lastFadeOff = new Date();
 
     if (fishCounter["purple"] == 0) { //no purple fish had been caught
@@ -840,7 +1041,7 @@ $("#grayFish").click(() => {
   clickedOnFish = true;
   currentFishCatchTime = new Date() - currentFishShowUp;
 
-  $("#grayFish").fadeOut(300, () => {
+  $("#grayFish").fadeOut(0, () => {
     lastFadeOff = new Date();
     if (fishCounter["gray"] == 0) { //no gray fish had been caught
       // console.log("gray is empty. appending");
@@ -890,21 +1091,21 @@ function changeTrees() {
   }
 }
 
-function changeCurrentPondGameProps(pondNumber,pondType,numberOfFishes) {
+function changeCurrentPondGameProps(pondNumber,pondType,numberOfFishes,veryFirstPond) {
   changeCurrentPondGamePropsSetTimeOut = setTimeout(() => {
     // console.log("pondNumber", pondNumber);
     currentPond = pondNumber;
-    console.log("current pond number:",currentPond);
+    // console.log("current pond number:",currentPond);
 
     // console.log("`pond`+pondNumber+`Type`", "pond" + pondNumber + "Type");
     currentPondType = pondType;
     // console.log("current pond type:",pondType);
 
-    console.log("currentPondType", currentPondType);
+    // console.log("currentPondType", currentPondType);
     currentPondNumberOfFishes = numberOfFishes;
     currentPondInitialNumberOfFishes=numberOfFishes;
-    console.log("current Number of fishes:",numberOfFishes);
-    console.log("ponds left in array:",ponds);
+    // console.log("current Number of fishes:",numberOfFishes);
+    // console.log("ponds left in array:",ponds);
 
     historyOfPonds+=[`Pond${pondNumber}_Type`,pondType]+ "\n" + [`Pond${pondNumber}_#Fishes`,numberOfFishes]+"\n";
 
@@ -1000,12 +1201,18 @@ function changeCurrentPondGameProps(pondNumber,pondType,numberOfFishes) {
     $("#purplePrice").text(gameSettings.fishProps[currentPondType].purple.ev);
     $("#grayPrice").text(gameSettings.fishProps[currentPondType].gray.ev);
 
+    if(veryFirstPond)
+      generateFirstFish();
     // console.log("currenPondFishProps:");
     // console.log(currentPondFishProps);
+    // currentPondStartingTime = new Date();
+    // lastFadeOff = new Date();
+    // generateFish();
+
   }, 2000);
 }
 
-function changePond() {
+function changePond(veryFirstPond) {
   let randomPondIndex = Math.floor(Math.random() * ponds.length);
   currentSelectedPond = ponds[randomPondIndex];
   let pondImgSrc = "/images/ponds/" + currentSelectedPond + ".png";
@@ -1031,7 +1238,7 @@ function changePond() {
   if (ponds.length == 0) {
     ponds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
   }
-  changeCurrentPondGameProps(currentSelectedPond,selectedPondType,randomNumberOfFishes);
+  changeCurrentPondGameProps(currentSelectedPond,selectedPondType,randomNumberOfFishes,veryFirstPond);
 }
 
 function clearAllSetTimeOutBeforeGenerateNewPond() {
@@ -1062,6 +1269,7 @@ $("#changePond").click(() => {
 
 
   setTimeout(() => { //give some air
+    airTime+=100;
     clearAllSetTimeOutBeforeGenerateNewPond();
     pondIntroTime = (gameSettings.maxIntroTime - gameSettings.minIntroTime) * prng() + gameSettings.minIntroTime;
     //update info of moments before changing pond
@@ -1097,7 +1305,7 @@ $("#changePond").click(() => {
       /////////////////////////////////////
       $("#mapContainer").css("display", "flex");
 
-      changePond();
+      changePond(false);
       gameOutputBody += ["PondStart", "PondStart"] + "\n" + ["PondIntroTime", pondIntroTime] + "\n";
       changeTrees();
 
@@ -1109,16 +1317,11 @@ $("#changePond").click(() => {
             $("#pondImage").fadeIn(50);
             $("#pondImage").show(50);
             zeroFisherManLine();
-            currentPondStartingTime = new Date();
-            setTimeout(() => { //give some air
+            // currentPondStartingTime = new Date();
               generateFishStop = false;
               clickedOnChangePond = false;
               giveUpTime = -1;
-              generateFirstFishSetTimeOut = setTimeout(() => {
-                generateFish();
-              }, 2 * 1000);
-            }, 10);
-
+              generateFirstFish();
           });
         });
       }, pondIntroTime * 1000);
@@ -1167,13 +1370,13 @@ $("#continuePond").click(() => {
 // From http://baagoe.com/en/RandomMusings/javascript/
 // Johannes BaagÃ¸e <baagoe@baagoe.com>, 2010
 function Mash() {
-  var n = 0xefc8249d;
+  let n = 0xefc8249d;
 
-  var mash = function (data) {
+  let mash = function (data) {
     data = data.toString();
-    for (var i = 0; i < data.length; i++) {
+    for (let i = 0; i < data.length; i++) {
       n += data.charCodeAt(i);
-      var h = 0.02519603282416938 * n;
+      let h = 0.02519603282416938 * n;
       n = h >>> 0;
       h -= n;
       h *= n;
@@ -1192,20 +1395,20 @@ function Mash() {
 function Alea() {
   return (function (args) {
     // Johannes BaagÃ¸e <baagoe@baagoe.com>, 2010
-    var s0 = 0;
-    var s1 = 0;
-    var s2 = 0;
-    var c = 1;
+    let s0 = 0;
+    let s1 = 0;
+    let s2 = 0;
+    let c = 1;
 
     if (args.length == 0) {
       args = [+new Date()];
     }
-    var mash = Mash();
+    let mash = Mash();
     s0 = mash(" ");
     s1 = mash(" ");
     s2 = mash(" ");
 
-    for (var i = 0; i < args.length; i++) {
+    for (let i = 0; i < args.length; i++) {
       s0 -= mash(args[i]);
       if (s0 < 0) {
         s0 += 1;
@@ -1221,8 +1424,8 @@ function Alea() {
     }
     mash = null;
 
-    var random = function () {
-      var t = 2091639 * s0 + c * 2.3283064365386963e-10; // 2^-32
+    let random = function () {
+      let t = 2091639 * s0 + c * 2.3283064365386963e-10; // 2^-32
       s0 = s1;
       s1 = s2;
       return (s2 = t - (c = t | 0));
