@@ -1,65 +1,65 @@
-var prng = new Alea();
-var gameSettings = {};
+const prng = new Alea();
+let gameSettings = {};
 
-var gameStarted = false;
-var numberOfMissedFishes = 0;
-var generateFishStop = false;
-var clickedOnFish = false;
-var lockFishClick = false;
-var clickedOnChangePond = false;
-var missedFishes = 0;
-var selectedFishType = [];
-var fishArray;
-var probabilityArray;
-var playerID;
-var timer;
-var missedMoreThan = false;
-var pondIntroTime = 0;
-var currentSelectedPond;
+const gameStarted = false;
+const numberOfMissedFishes = 0;
+let generateFishStop = false;
+let clickedOnFish = false;
+let lockFishClick = false;
+let clickedOnChangePond = false;
+let missedFishes = 0;
+const selectedFishType = [];
+let fishArray;
+let probabilityArray;
+let playerID;
+let timer;
+let missedMoreThan = false;
+let pondIntroTime = 0;
+let currentSelectedPond;
 
-var ponds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-var pondTypes = ["RD", "RT", "N"];
-var newPondSource = "Ponds";
-var newPondTarget = "Origin";
+const ponds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+const pondTypes = ["RD", "RT", "N"];
+let newPondSource = "Ponds";
+let newPondTarget = "Origin";
 
-var fishApperSetTimeOut = 0;
-var fishDisApperSetTimeOut = 0;
-var waitForPondApperThenGenerateFishSetTimeOut;
-var changeCurrentPondGamePropsSetTimeOut;
-var containerFadeOutSetTimeOut;
-var generateFirstFishSetTimeOut;
+let fishApperSetTimeOut = 0;
+let fishDisApperSetTimeOut = 0;
+let waitForPondApperThenGenerateFishSetTimeOut;
+let changeCurrentPondGamePropsSetTimeOut;
+let containerFadeOutSetTimeOut;
+let generateFirstFishSetTimeOut;
 
-var gameTimer;
-var startGameTime;
-var endGameTime;
-var currentPond;
-var currentPondType;
-var currentPondNumberOfFishes;
-var currentPondStartingTime;
-var pondTimeUntilNow; //time on current pond
-var numberOfPondsUntilNow = 0;
-var numOfFishesUntilNow = 0;
-var currentFishType;
-var currentFishEV;
-var currentFishLatency; // moment curr fish fade in minus moment last fish fade out
-var currentFishShowUp; //moment fish fade in
-var lastFadeOff; //moment last fish fade off
-var giveUpTime = -1; //time between lastFadeOff and clicking change pond
-var currentFishCatchTime;
-var currentPondTotalOutcome = 0;
-var totalPondsOutcome = 0;
+let gameTimer;
+let startGameTime;
+let endGameTime;
+let currentPond;
+let currentPondType;
+let currentPondNumberOfFishes;
+let currentPondStartingTime;
+let pondTimeUntilNow; //time on current pond
+let numberOfPondsUntilNow = 0;
+let numOfFishesUntilNow = 0;
+let currentFishType;
+let currentFishEV;
+let currentFishLatency; // moment curr fish fade in minus moment last fish fade out
+let currentFishShowUp; //moment fish fade in
+let lastFadeOff; //moment last fish fade off
+let giveUpTime = -1; //time between lastFadeOff and clicking change pond
+let currentFishCatchTime;
+let currentPondTotalOutcome = 0;
+let totalPondsOutcome = 0;
 
-var gameOutputBody;
-var gameOutput;
-var fishCounter = {
+let gameOutputBody;
+let gameOutput;
+const fishCounter = {
   golden: 0,
   blue: 0,
   green: 0,
   purple: 0,
   gray: 0
-}
+};
 
-var currentPondFishProps = {
+const currentPondFishProps = {
   golden: {
     probability: 0,
     ev: 0,
@@ -97,7 +97,7 @@ var currentPondFishProps = {
   }
 };
 
-var pondTypesDist = {
+const pondTypesDist = {
   RD: {
     Dist: 0,
     Ponds: [],
@@ -425,7 +425,7 @@ function generateFish() {
   let fishY = Math.floor(Math.random() * 60 + 10);
   fishY += "%";
 
-  var selectedFish;
+  let selectedFish;
 
   ///////////////// Randomize fish /////////////////
 
@@ -621,7 +621,7 @@ function endGame() {
     $("#missedGameOver").css("display", "none");
     $("#cover").fadeIn(400);
 
-    for (var i = 1; i < 999; i++) window.clearTimeout(i);
+    for (let i = 1; i < 999; i++) window.clearTimeout(i);
   });
 }
 
@@ -647,7 +647,7 @@ function startGame() {
   $("#fisherManLine").append(
     "<svg><line id='fisherManLineSvg' x1='900' y1='0' x2='500' y2='500' style='stroke:rgb(0,0,0,0.5)'></line></svg>"
   );
-  var animationTime = 4.5;
+  const animationTime = 4.5;
   let x1Position = $("#environment").outerWidth();
   let y1Position = $("#fishManSpace").outerHeight();
   $("#fisherManLineSvg").attr("x1", x1Position);
@@ -1028,7 +1028,7 @@ function changePond() {
       pondTypesDist["Alive"]--;
       if (pondTypesDist["Alive"] == 0) {
         pondTypesDist["Alive"] = 3;
-        var tempMode = newPondSource;
+        const tempMode = newPondSource;
         newPondSource = newPondTarget;
         newPondTarget = tempMode;
       }
@@ -1179,13 +1179,13 @@ $("#continuePond").click(() => {
 // From http://baagoe.com/en/RandomMusings/javascript/
 // Johannes BaagÃ¸e <baagoe@baagoe.com>, 2010
 function Mash() {
-  var n = 0xefc8249d;
+  const n = 0xefc8249d;
 
-  var mash = function (data) {
+  const mash = function (data) {
     data = data.toString();
-    for (var i = 0; i < data.length; i++) {
+    for (let i = 0; i < data.length; i++) {
       n += data.charCodeAt(i);
-      var h = 0.02519603282416938 * n;
+      let h = 0.02519603282416938 * n;
       n = h >>> 0;
       h -= n;
       h *= n;
@@ -1204,20 +1204,20 @@ function Mash() {
 function Alea() {
   return (function (args) {
     // Johannes BaagÃ¸e <baagoe@baagoe.com>, 2010
-    var s0 = 0;
-    var s1 = 0;
-    var s2 = 0;
-    var c = 1;
+    let s0 = 0;
+    let s1 = 0;
+    let s2 = 0;
+    const c = 1;
 
     if (args.length == 0) {
       args = [+new Date()];
     }
-    var mash = Mash();
+    let mash = Mash();
     s0 = mash(" ");
     s1 = mash(" ");
     s2 = mash(" ");
 
-    for (var i = 0; i < args.length; i++) {
+    for (let i = 0; i < args.length; i++) {
       s0 -= mash(args[i]);
       if (s0 < 0) {
         s0 += 1;
@@ -1233,8 +1233,8 @@ function Alea() {
     }
     mash = null;
 
-    var random = function () {
-      var t = 2091639 * s0 + c * 2.3283064365386963e-10; // 2^-32
+    const random = function () {
+      const t = 2091639 * s0 + c * 2.3283064365386963e-10; // 2^-32
       s0 = s1;
       s1 = s2;
       return (s2 = t - (c = t | 0));
