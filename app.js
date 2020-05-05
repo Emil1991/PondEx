@@ -5,44 +5,6 @@ const querystring = require("querystring");
 const bodyParser = require("body-parser");
 const fs = require("fs");
 const serveIndex = require("serve-index");
-const csvtojson=require("csvtojson");
-var pondJson=require("./public/data/pond.json");
-// console.log(pondJson);
-
-var outputPond=[pondJson[0]["field1"],pondJson[0]["V1"],pondJson[0]["V2"]]+"\n";
-
-var currFishN='16';
-
-pondJson.forEach((line,index)=>{
-  if(line["V1"].endsWith('Fish1_FishLatency')){
-    currFishN=(60/Number(line["V2"])).toString();
-    pondJson[index-3]["V2"]=(60/Number(line["V2"])).toString();
-  }
-
-  if(line["V1"]==='FishN'){
-    pondJson[index]["V2"]=currFishN;
-  }
-});
-
-pondJson.forEach((line,index)=>{
-  outputPond+=[pondJson[index]["field1"],pondJson[index]["V1"],pondJson[index]["V2"]]+"\n";
-});
-
-
-
-let pathX="public/data";
-let nameF = pathX + "/PFF2.csv";
-var wsx=fs.createWriteStream(nameF);
-wsx.write(outputPond);
-
-
-
-
-
-
-
-
-
 
 const exphbs = require("express-handlebars");
 app.use(express.static(__dirname + "/public"));
@@ -151,15 +113,6 @@ var gameSettings = {
   missingThreshold: 5
 };
 
-
-
-
-
-
-
-
-
-
 app.get("/", (req, res) => {
   console.log("new visitor");
   res.render("index", { settings: gameSettings });
@@ -265,4 +218,5 @@ app.post("/output", (req, res) => {
   let name = path1 + "/" + userID + ".csv";
   var ws = fs.createWriteStream(name);
   ws.write(req.body.output);
+  res.sendStatus(200)
 });
