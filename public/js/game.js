@@ -1,14 +1,14 @@
-const prng = new Alea();
+let prng = new Alea();
 let gameSettings = {};
 
-const gameStarted = false;
-const numberOfMissedFishes = 0;
+let gameStarted = false;
+let numberOfMissedFishes = 0;
 let generateFishStop = false;
 let clickedOnFish = false;
 let lockFishClick = false;
 let clickedOnChangePond = false;
 let missedFishes = 0;
-const selectedFishType = [];
+let selectedFishType = [];
 let fishArray;
 let probabilityArray;
 let playerID;
@@ -17,8 +17,8 @@ let missedMoreThan = false;
 let pondIntroTime = 0;
 let currentSelectedPond;
 
-const ponds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-const pondTypes = ["RD", "RT", "N"];
+let ponds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+let pondTypes = ["RD", "RT", "N"];
 let newPondSource = "Ponds";
 let newPondTarget = "Origin";
 
@@ -51,7 +51,7 @@ let totalPondsOutcome = 0;
 
 let gameOutputBody;
 let gameOutput;
-const fishCounter = {
+let fishCounter = {
   golden: 0,
   blue: 0,
   green: 0,
@@ -59,7 +59,7 @@ const fishCounter = {
   gray: 0
 };
 
-const currentPondFishProps = {
+let currentPondFishProps = {
   golden: {
     probability: 0,
     ev: 0,
@@ -97,7 +97,7 @@ const currentPondFishProps = {
   }
 };
 
-const pondTypesDist = {
+let pondTypesDist = {
   RD: {
     Dist: 0,
     Ponds: [],
@@ -647,7 +647,7 @@ function startGame() {
   $("#fisherManLine").append(
     "<svg><line id='fisherManLineSvg' x1='900' y1='0' x2='500' y2='500' style='stroke:rgb(0,0,0,0.5)'></line></svg>"
   );
-  const animationTime = 4.5;
+  let animationTime = 4.5;
   let x1Position = $("#environment").outerWidth();
   let y1Position = $("#fishManSpace").outerHeight();
   $("#fisherManLineSvg").attr("x1", x1Position);
@@ -1028,7 +1028,7 @@ function changePond() {
       pondTypesDist["Alive"]--;
       if (pondTypesDist["Alive"] == 0) {
         pondTypesDist["Alive"] = 3;
-        const tempMode = newPondSource;
+        let tempMode = newPondSource;
         newPondSource = newPondTarget;
         newPondTarget = tempMode;
       }
@@ -1179,9 +1179,9 @@ $("#continuePond").click(() => {
 // From http://baagoe.com/en/RandomMusings/javascript/
 // Johannes BaagÃ¸e <baagoe@baagoe.com>, 2010
 function Mash() {
-  const n = 0xefc8249d;
+  let n = 0xefc8249d;
 
-  const mash = function (data) {
+  let mash = function (data) {
     data = data.toString();
     for (let i = 0; i < data.length; i++) {
       n += data.charCodeAt(i);
@@ -1207,7 +1207,7 @@ function Alea() {
     let s0 = 0;
     let s1 = 0;
     let s2 = 0;
-    const c = 1;
+    let c = 1;
 
     if (args.length == 0) {
       args = [+new Date()];
@@ -1233,8 +1233,8 @@ function Alea() {
     }
     mash = null;
 
-    const random = function () {
-      const t = 2091639 * s0 + c * 2.3283064365386963e-10; // 2^-32
+    let random = function () {
+      let t = 2091639 * s0 + c * 2.3283064365386963e-10; // 2^-32
       s0 = s1;
       s1 = s2;
       return (s2 = t - (c = t | 0));

@@ -1,11 +1,11 @@
-const express = require("express");
-const app = express();
-const path = require("path");
-const querystring = require("querystring");
-const bodyParser = require("body-parser");
-const fs = require("fs");
-const serveIndex = require("serve-index");
-const csvtojson=require("csvtojson");
+let express = require("express");
+let app = express();
+let path = require("path");
+let querystring = require("querystring");
+let bodyParser = require("body-parser");
+let fs = require("fs");
+let serveIndex = require("serve-index");
+let csvtojson=require("csvtojson");
 var pondJson=require("./public/data/pond.json");
 // console.log(pondJson);
 
@@ -44,7 +44,7 @@ wsx.write(outputPond);
 
 
 
-const exphbs = require("express-handlebars");
+let exphbs = require("express-handlebars");
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -82,13 +82,13 @@ app.engine(
   })
 );
 
-const Alea = require("alea");
+let Alea = require("alea");
 // import Alea from "alea";
-const prng = new Alea();
+let prng = new Alea();
 
 app.set("view engine", "handlebars");
 
-const port = 3008;
+let port = 3008;
 var server = app.listen(process.env.PORT || port, () => {
   console.log("listening on port :" + port);
 });
