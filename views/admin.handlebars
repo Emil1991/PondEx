@@ -1,0 +1,582 @@
+<div id="adminContainer">
+    <div id="adminContainerPonds">
+        <div id="col1">
+            <div class="pondNumber">
+                <h4>Pond #1</h4>
+                <div class="pondProps">
+                    <span>Number of fishes:</span>
+                    <input type="text" class="pond" id="pond1" value={{settings.pond1}} onkeyup="validateForm()" /><span
+                        class="errorMessage">>=0</span>
+                    <span>Type:</span>
+                    <select id="pond1Type" class="pondTypes">
+                        <option value="N" {{#ifEqual settings.pond1Type 'N'}}selected{{/ifEqual}}>Neutral</option>
+                        <option value="RD" {{#ifEqual settings.pond1Type 'RD'}}selected{{/ifEqual}}>RD</option>
+                        <option value="RT" {{#ifEqual settings.pond1Type 'RT'}}selected{{/ifEqual}}>RT</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="pondNumber">
+                <h4>Pond #2</h4>
+                <div class="pondProps">
+                    <span>Number of fishes:</span>
+                    <input type="text" class="pond" id="pond2" value={{settings.pond2}} onkeyup="validateForm()" /><span
+                        class="errorMessage">>=0</span>
+                    <span>Type:</span>
+                    <select id="pond2Type" class="pondTypes">
+                        <option value="N" {{#ifEqual settings.pond2Type 'N'}}selected{{/ifEqual}}>Neutral</option>
+                        <option value="RD" {{#ifEqual settings.pond2Type 'RD'}}selected{{/ifEqual}}>RD</option>
+                        <option value="RT" {{#ifEqual settings.pond2Type 'RT'}}selected{{/ifEqual}}>RT</option>
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="pondNumber">
+                <h4>Pond #3</h4>
+                <div class="pondProps">
+                    <span>Number of fishes:</span>
+                    <input type="text" class="pond" id="pond3" value={{settings.pond3}} onkeyup="validateForm()" /><span
+                        class="errorMessage">>=0</span>
+                    <span>Type:</span>
+                    <select id="pond3Type" class="pondTypes">
+                        <option value="N" {{#ifEqual settings.pond3Type 'N'}}selected{{/ifEqual}}>Neutral</option>
+                        <option value="RD" {{#ifEqual settings.pond3Type 'RD'}}selected{{/ifEqual}}>RD</option>
+                        <option value="RT" {{#ifEqual settings.pond3Type 'RT'}}selected{{/ifEqual}}>RT</option>
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="pondNumber">
+                <h4>Pond #4</h4>
+                <div class="pondProps">
+                    <span>Number of fishes:</span>
+                    <input type="text" class="pond" id="pond4" value={{settings.pond4}} onkeyup="validateForm()" /><span
+                        class="errorMessage">>=0</span>
+                    <span>Type:</span>
+                    <select id="pond4Type" class="pondTypes">
+                        <option value="N" {{#ifEqual settings.pond4Type 'N'}}selected{{/ifEqual}}>Neutral</option>
+                        <option value="RD" {{#ifEqual settings.pond4Type 'RD'}}selected{{/ifEqual}}>RD</option>
+                        <option value="RT" {{#ifEqual settings.pond4Type 'RT'}}selected{{/ifEqual}}>RT</option>
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="pondNumber">
+                <h4>Pond #5</h4>
+                <div class="pondProps">
+                    <span>Number of fishes:</span>
+                    <input type="text" class="pond" id="pond5" value={{settings.pond5}} onkeyup="validateForm()" /><span
+                        class="errorMessage">>=0</span>
+                    <span>Type:</span>
+                    <select id="pond5Type" class="pondTypes">
+                        <option value="N" {{#ifEqual settings.pond5Type 'N'}}selected{{/ifEqual}}>Neutral</option>
+                        <option value="RD" {{#ifEqual settings.pond5Type 'RD'}}selected{{/ifEqual}}>RD</option>
+                        <option value="RT" {{#ifEqual settings.pond5Type 'RT'}}selected{{/ifEqual}}>RT</option>
+                    </select>
+                </div>
+            </div>
+            <div class="pondNumber">
+                <h4>Pond #6</h4>
+                <div class="pondProps">
+                    <span>Number of fishes:</span>
+                    <input type="text" class="pond" id="pond6" value={{settings.pond6}} onkeyup="validateForm()" /><span
+                        class="errorMessage">>=0</span>
+                    <span>Type:</span>
+                    <select id="pond6Type" class="pondTypes">
+                        <option value="N" {{#ifEqual settings.pond6Type 'N'}}selected{{/ifEqual}}>Neutral</option>
+                        <option value="RD" {{#ifEqual settings.pond6Type 'RD'}}selected{{/ifEqual}}>RD</option>
+                        <option value="RT" {{#ifEqual settings.pond6Type 'RT'}}selected{{/ifEqual}}>RT</option>
+                    </select>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="col2">
+            <div class="pondNumber">
+                <h4>Pond #7</h4>
+                <div class="pondProps">
+                    <span>Number of fishes:</span>
+                    <input type="text" class="pond" id="pond7" value={{settings.pond7}} onkeyup="validateForm()" /><span
+                        class="errorMessage">>=0</span>
+                    <span>Type:</span>
+                    <select id="pond7Type" class="pondTypes">
+                        <option value="N" {{#ifEqual settings.pond7Type 'N'}}selected{{/ifEqual}}>Neutral</option>
+                        <option value="RD" {{#ifEqual settings.pond7Type 'RD'}}selected{{/ifEqual}}>RD</option>
+                        <option value="RT" {{#ifEqual settings.pond7Type 'RT'}}selected{{/ifEqual}}>RT</option>
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="pondNumber">
+                <h4>Pond #8</h4>
+                <div class="pondProps">
+                    <span>Number of fishes:</span>
+                    <input type="text" class="pond" id="pond8" value={{settings.pond8}} onkeyup="validateForm()" /><span
+                        class="errorMessage">>=0</span>
+                    <span>Type:</span>
+                    <select id="pond8Type" class="pondTypes">
+                        <option value="N" {{#ifEqual settings.pond8Type 'N'}}selected{{/ifEqual}}>Neutral</option>
+                        <option value="RD" {{#ifEqual settings.pond8Type 'RD'}}selected{{/ifEqual}}>RD</option>
+                        <option value="RT" {{#ifEqual settings.pond8Type 'RT'}}selected{{/ifEqual}}>RT</option>
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="pondNumber">
+                <h4>Pond #9</h4>
+                <div class="pondProps">
+                    <span>Number of fishes:</span>
+                    <input type="text" class="pond" id="pond9" value={{settings.pond9}} onkeyup="validateForm()" /><span
+                        class="errorMessage">>=0</span>
+                    <span>Type:</span>
+                    <select id="pond9Type" class="pondTypes">
+                        <option value="N" {{#ifEqual settings.pond9Type 'N'}}selected{{/ifEqual}}>Neutral</option>
+                        <option value="RD" {{#ifEqual settings.pond9Type 'RD'}}selected{{/ifEqual}}>RD</option>
+                        <option value="RT" {{#ifEqual settings.pond9Type 'RT'}}selected{{/ifEqual}}>RT</option>
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="pondNumber">
+                <h4>Pond #10</h4>
+                <div class="pondProps">
+                    <span>Number of fishes:</span>
+                    <input type="text" class="pond" id="pond10" value={{settings.pond10}}
+                        onkeyup="validateForm()" /><span class="errorMessage">>=0</span>
+                    <span>Type:</span>
+                    <select id="pond10Type" class="pondTypes">
+                        <option value="N" {{#ifEqual settings.pond10Type 'N'}}selected{{/ifEqual}}>Neutral</option>
+                        <option value="RD" {{#ifEqual settings.pond10Type 'RD'}}selected{{/ifEqual}}>RD</option>
+                        <option value="RT" {{#ifEqual settings.pond10Type 'RT'}}selected{{/ifEqual}}>RT</option>
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="pondNumber">
+                <h4>Pond #11</h4>
+                <div class="pondProps">
+                    <span>Number of fishes:</span>
+                    <input type="text" class="pond" id="pond11" value={{settings.pond11}}
+                        onkeyup="validateForm()" /><span class="errorMessage">>=0</span>
+                    <span>Type:</span>
+                    <select id="pond11Type" class="pondTypes">
+                        <option value="N" {{#ifEqual settings.pond11Type 'N'}}selected{{/ifEqual}}>Neutral</option>
+                        <option value="RD" {{#ifEqual settings.pond11Type 'RD'}}selected{{/ifEqual}}>RD</option>
+                        <option value="RT" {{#ifEqual settings.pond11Type 'RT'}}selected{{/ifEqual}}>RT</option>
+                    </select>
+                </div>
+            </div>
+            <div class="pondNumber">
+                <h4>Pond #12</h4>
+                <div class="pondProps">
+                    <span>Number of fishes:</span>
+                    <input type="text" class="pond" id="pond12" value={{settings.pond12}}
+                        onkeyup="validateForm()" /><span class="errorMessage">>=0</span>
+                    <span>Type:</span>
+                    <select id="pond12Type" class="pondTypes">
+                        <option value="N" {{#ifEqual settings.pond12Type 'N'}}selected{{/ifEqual}}>Neutral</option>
+                        <option value="RD" {{#ifEqual settings.pond12Type 'RD'}}selected{{/ifEqual}}>RD</option>
+                        <option value="RT" {{#ifEqual settings.pond12Type 'RT'}}selected{{/ifEqual}}>RT</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div id="col3">
+            <div id="fishesDistWraper">
+                <div id="fishesDistribution">
+                    <h4><u><b>RD:</b></u></h4>
+                    <div id="goldenPrec" style="display:grid;grid-template-columns:1fr 1fr 1fr;justify-content:start;">
+                        <span class="fishType">Golden:</span>
+
+                        <div>
+                            <input type="text" value={{settings.fishProps.RD.golden.probability}}
+                                onkeyup="validateForm()" maxlength="5" id="goldenPrRD" style="width:3em;display:inline;"
+                                class="fishProp" />Pr<span class="errorMessage">0 &#60;
+                                &#38;&#38; &#60; 100 </span>
+                        </div>
+                        <div>
+                            <input type="text" value={{settings.fishProps.RD.golden.ev}} onkeyup="validateForm()"
+                                maxlength="5" id="goldenEvRD" style="width:3em;" class="fishProp" />$<span
+                                class="errorMessage">0 &#60;
+                                &#38;&#38; &#60;
+                                100 </span>
+                        </div>
+                    </div>
+
+                    <div id="bluePrec" style="display:grid;grid-template-columns: 1fr 1fr 1fr;">
+
+                        <span class="fishType">Blue:</span>
+
+
+                        <div>
+                            <input type="text" value={{settings.fishProps.RD.blue.probability}} onkeyup="validateForm()"
+                                maxlength="5" id="bluePrRD" style="width:3em;" class="fishProp" />Pr<span
+                                class="errorMessage">0 &#60;
+                                &#38;&#38; &#60;
+                                100</span> </div>
+                        <div>
+                            <input type="text" value={{settings.fishProps.RD.blue.ev}} onkeyup="validateForm()"
+                                maxlength="5" id="blueEvRD" style="width:3em;" class="fishProp" />$<span
+                                class="errorMessage">0 &#60;
+                                &#38;&#38; &#60;
+                                100</span>
+                        </div>
+                    </div>
+                    <div id="greenPrec" style="display:grid;grid-template-columns: 1fr 1fr 1fr;">
+
+                        <span class="fishType">Green:</span>
+
+
+                        <div>
+                            <input type="text" value={{settings.fishProps.RD.green.probability}}
+                                onkeyup="validateForm()" maxlength="5" id="greenPrRD" style="width:3em;"
+                                class="fishProp" />Pr<span class="errorMessage">0 &#60;
+                                &#38;&#38; &#60;
+                                100</span> </div>
+                        <div>
+                            <input type="text" value={{settings.fishProps.RD.green.ev}} onkeyup="validateForm()"
+                                maxlength="5" id="greenEvRD" style="width:3em;" class="fishProp" />$<span
+                                class="errorMessage">0 &#60;
+                                &#38;&#38; &#60;
+                                100</span>
+                        </div>
+                    </div>
+                    <div id="purplePrec" style="display:grid;grid-template-columns: 1fr 1fr 1fr;">
+
+                        <span class="fishType">Purple:</span>
+
+
+                        <div>
+                            <input type="text" value={{settings.fishProps.RD.purple.probability}}
+                                onkeyup="validateForm()" maxlength="5" id="purplePrRD" style="width:3em;"
+                                class="fishProp" />Pr<span class="errorMessage">0 &#60;
+                                &#38;&#38; &#60;
+                                100</span> </div>
+                        <div>
+                            <input type="text" value={{settings.fishProps.RD.purple.ev}} onkeyup="validateForm()"
+                                maxlength="5" id="purpleEvRD" style="width:3em;" class="fishProp" />$<span
+                                class="errorMessage">0 &#60;
+                                &#38;&#38; &#60;
+                                100</span> </div>
+                    </div>
+                    <div id="grayPrec" style="display:grid;grid-template-columns: 1fr 1fr 1fr;">
+
+                        <span class="fishType">Gray:</span>
+
+
+                        <div>
+                            <input type="text" value={{settings.fishProps.RD.gray.probability}} onkeyup="validateForm()"
+                                maxlength="5" id="grayPrRD" style="width:3em;" class="fishProp" />Pr<span
+                                class="errorMessage">0 &#60;
+                                &#38;&#38; &#60;
+                                100</span> </div>
+                        <div>
+                            <input type="text" value={{settings.fishProps.RD.gray.ev}} onkeyup="validateForm()"
+                                maxlength="5" id="grayEvRD" style="width:3em;" class="fishProp" />$<span
+                                class="errorMessage">0 &#60;
+                                &#38;&#38; &#60;
+                                100</span>
+                        </div>
+                    </div>
+                </div>
+                <div id="fishesDistribution">
+                    <h4><u><b>RT:</b></u></h4>
+                    <div id="goldenPrec" style="display:grid;grid-template-columns: 1fr 1fr 1fr;justify-content:start;">
+                        <span class="fishType">Golden:</span>
+
+                        <div>
+                            <input type="text" value={{settings.fishProps.RT.golden.probability}}
+                                onkeyup="validateForm()" maxlength="5" id="goldenPrRT" style="width:3em;display:inline;"
+                                class="fishProp" />Pr<span class="errorMessage">0 &#60;
+                                &#38;&#38; &#60; 100 </span>
+                        </div>
+                        <div>
+                            <input type="text" value={{settings.fishProps.RT.golden.ev}} onkeyup="validateForm()"
+                                maxlength="5" id="goldenEvRT" style="width:3em;" class="fishProp" />$<span
+                                class="errorMessage">0 &#60;
+                                &#38;&#38; &#60;
+                                100 </span>
+                        </div>
+                    </div>
+
+                    <div id="bluePrec" style="display:grid;grid-template-columns: 1fr 1fr 1fr;">
+
+                        <span class="fishType">Blue:</span>
+
+
+                        <div>
+                            <input type="text" value={{settings.fishProps.RT.blue.probability}} onkeyup="validateForm()"
+                                maxlength="5" id="bluePrRT" style="width:3em;" class="fishProp" />Pr<span
+                                class="errorMessage">0 &#60;
+                                &#38;&#38; &#60;
+                                100</span> </div>
+                        <div>
+                            <input type="text" value={{settings.fishProps.RT.blue.ev}} onkeyup="validateForm()"
+                                maxlength="5" id="blueEvRT" style="width:3em;" class="fishProp" />$<span
+                                class="errorMessage">0 &#60;
+                                &#38;&#38; &#60;
+                                100</span>
+                        </div>
+                    </div>
+                    <div id="greenPrec" style="display:grid;grid-template-columns: 1fr 1fr 1fr;">
+
+                        <span class="fishType">Green:</span>
+
+
+                        <div>
+                            <input type="text" value={{settings.fishProps.RT.green.probability}}
+                                onkeyup="validateForm()" maxlength="5" id="greenPrRT" style="width:3em;"
+                                class="fishProp" />Pr<span class="errorMessage">0 &#60;
+                                &#38;&#38; &#60;
+                                100</span> </div>
+                        <div>
+                            <input type="text" value={{settings.fishProps.RT.green.ev}} onkeyup="validateForm()"
+                                maxlength="5" id="greenEvRT" style="width:3em;" class="fishProp" />$<span
+                                class="errorMessage">0 &#60;
+                                &#38;&#38; &#60;
+                                100</span>
+                        </div>
+                    </div>
+                    <div id="purplePrec" style="display:grid;grid-template-columns: 1fr 1fr 1fr;">
+
+                        <span class="fishType">Purple:</span>
+
+
+                        <div>
+                            <input type="text" value={{settings.fishProps.RT.purple.probability}}
+                                onkeyup="validateForm()" maxlength="5" id="purplePrRT" style="width:3em;"
+                                class="fishProp" />Pr<span class="errorMessage">0 &#60;
+                                &#38;&#38; &#60;
+                                100</span> </div>
+                        <div>
+                            <input type="text" value={{settings.fishProps.RT.purple.ev}} onkeyup="validateForm()"
+                                maxlength="5" id="purpleEvRT" style="width:3em;" class="fishProp" />$<span
+                                class="errorMessage">0 &#60;
+                                &#38;&#38; &#60;
+                                100</span> </div>
+                    </div>
+                    <div id="grayPrec" style="display:grid;grid-template-columns: 1fr 1fr 1fr;">
+
+                        <span class="fishType">Gray:</span>
+
+
+                        <div>
+                            <input type="text" value={{settings.fishProps.RT.gray.probability}} onkeyup="validateForm()"
+                                maxlength="5" id="grayPrRT" style="width:3em;" class="fishProp" />Pr<span
+                                class="errorMessage">0 &#60;
+                                &#38;&#38; &#60;
+                                100</span> </div>
+                        <div>
+                            <input type="text" value={{settings.fishProps.RT.gray.ev}} onkeyup="validateForm()"
+                                maxlength="5" id="grayEvRT" style="width:3em;" class="fishProp" />$<span
+                                class="errorMessage">0 &#60;
+                                &#38;&#38; &#60;
+                                100</span>
+                        </div>
+                    </div>
+                </div>
+                <div id="fishesDistribution">
+                    <h4><u><b>Neutral:</b></u></h4>
+                    <div id="goldenPrec" style="display:grid;grid-template-columns: 1fr 1fr 1fr;justify-content:start;">
+                        <span class="fishType">Golden:</span>
+
+                        <div>
+                            <input type="text" value={{settings.fishProps.N.golden.probability}}
+                                onkeyup="validateForm()" maxlength="5" id="goldenPrN" style="width:3em;display:inline;"
+                                class="fishProp" />Pr<span class="errorMessage">0 &#60;
+                                &#38;&#38; &#60; 100 </span>
+                        </div>
+                        <div>
+                            <input type="text" value={{settings.fishProps.N.golden.ev}} onkeyup="validateForm()"
+                                maxlength="5" id="goldenEvN" style="width:3em;" class="fishProp" />$<span
+                                class="errorMessage">0 &#60;
+                                &#38;&#38; &#60;
+                                100 </span>
+                        </div>
+                    </div>
+
+                    <div id="bluePrec" style="display:grid;grid-template-columns: 1fr 1fr 1fr;">
+
+                        <span class="fishType">Blue:</span>
+
+
+                        <div>
+                            <input type="text" value={{settings.fishProps.N.blue.probability}} onkeyup="validateForm()"
+                                maxlength="5" id="bluePrN" style="width:3em;" class="fishProp" />Pr<span
+                                class="errorMessage">0 &#60;
+                                &#38;&#38; &#60;
+                                100</span> </div>
+                        <div>
+                            <input type="text" value={{settings.fishProps.N.blue.ev}} onkeyup="validateForm()"
+                                maxlength="5" id="blueEvN" style="width:3em;" class="fishProp" />$<span
+                                class="errorMessage">0 &#60;
+                                &#38;&#38; &#60;
+                                100</span>
+                        </div>
+                    </div>
+                    <div id="greenPrec" style="display:grid;grid-template-columns: 1fr 1fr 1fr;">
+
+                        <span class="fishType">Green:</span>
+
+
+                        <div>
+                            <input type="text" value={{settings.fishProps.N.green.probability}} onkeyup="validateForm()"
+                                maxlength="5" id="greenPrN" style="width:3em;" class="fishProp" />Pr<span
+                                class="errorMessage">0 &#60;
+                                &#38;&#38; &#60;
+                                100</span> </div>
+                        <div>
+                            <input type="text" value={{settings.fishProps.N.green.ev}} onkeyup="validateForm()"
+                                maxlength="5" id="greenEvN" style="width:3em;" class="fishProp" />$<span
+                                class="errorMessage">0 &#60;
+                                &#38;&#38; &#60;
+                                100</span>
+                        </div>
+                    </div>
+                    <div id="purplePrec" style="display:grid;grid-template-columns:1fr 1fr 1fr;">
+
+                        <span class="fishType">Purple:</span>
+
+
+                        <div>
+                            <input type="text" value={{settings.fishProps.N.purple.probability}}
+                                onkeyup="validateForm()" maxlength="5" id="purplePrN" style="width:3em;"
+                                class="fishProp" />Pr<span class="errorMessage">0 &#60;
+                                &#38;&#38; &#60;
+                                100</span> </div>
+                        <div>
+                            <input type="text" value={{settings.fishProps.N.purple.ev}} onkeyup="validateForm()"
+                                maxlength="5" id="purpleEvN" style="width:3em;" class="fishProp" />$<span
+                                class="errorMessage">0 &#60;
+                                &#38;&#38; &#60;
+                                100</span> </div>
+                    </div>
+                    <div id="grayPrec" style="display:grid;grid-template-columns: 1fr 1fr 1fr;">
+
+                        <span class="fishType">Gray:</span>
+
+
+                        <div>
+                            <input type="text" value={{settings.fishProps.N.gray.probability}} onkeyup="validateForm()"
+                                maxlength="5" id="grayPrN" style="width:3em;" class="fishProp" />Pr<span
+                                class="errorMessage">0 &#60;
+                                &#38;&#38; &#60;
+                                100</span> </div>
+                        <div>
+                            <input type="text" value={{settings.fishProps.N.gray.ev}} onkeyup="validateForm()"
+                                maxlength="5" id="grayEvN" style="width:3em;" class="fishProp" />$<span
+                                class="errorMessage">0 &#60;
+                                &#38;&#38; &#60;
+                                100</span>
+                        </div>
+                    </div>
+                    <div id="fishRandomizerButton">
+                        <button type="button" class="btn btn-success" id="fishPropsRandomizer">Randomize fish
+                            props</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="genSettings">
+        <div id="minMaxNumberOfFishes">
+            <div id="minMax">
+                <span style="position:relative;top:100%;left:1vw;">
+                    <span>Min:</span>
+                    <input id="minNumberOfFishes" type="text" value={{settings.minNumberOfFishes}}>
+                    <span>Max:</span>
+                    <input id="maxNumberOfFishes" type="text" value={{settings.maxNumberOfFishes}}>
+                    <button id="randomizer" style="margin-left:1em;" type="button" class="btn btn-success">Randomize
+                        number of fishes</button>
+                    <button id="typeRD" style="margin-left:0.5em;" type="button" class="btn btn-info">RD</button>
+                    <button id="typeRT" style="margin-left:0.5em;" type="button" class="btn btn-info">RT</button>
+                    <button id="typeNeutral" style="margin-left:0.5em;" type="button"
+                        class="btn btn-info">Neutral</button>
+                    <button id="pondTypeRandomizer" style="margin-left:0.5em;" type="button"
+                        class="btn btn-info">Mixed</button>
+                </span>
+            </div>
+        </div>
+        <div id="generalProps">
+            <div id="props">
+                <div>
+                    <span>Game
+                        time:</span>
+                    <input style="color:black;display:inline;" value={{settings.gameTime}} id="gameTime" type="text"
+                        onkeyup="validateForm()" />(Minutes)
+                    <span class="errorMessage">Must
+                        be
+                        >0</span>
+                </div>
+                <div>
+                    <span>
+                        Pond
+                        intro
+                        time(sec)| <span>Min:</span>
+                        <input id="minIntroTime" type="text" value={{settings.minIntroTime}} onkeyup="validateForm()">
+                        <span>Max:</span>
+                        <input id="maxIntroTime" type="text" value={{settings.maxIntroTime}}
+                            onkeyup="validateForm()"></span>
+                    <span class="errorMessage">Must
+                        be
+                        >0</span>
+                </div>
+                <div>
+                    <span>Fish
+                        visibility
+                        time:</span>
+
+
+                    <input style="color:black;display:inline;" value={{settings.fishVisibilityTime}}
+                        id="changeVisibility" type="text" onkeyup="validateForm()" />(sec)
+                    <span class="errorMessage">Must
+                        be
+                        >0</span>
+                </div>
+
+                <div>
+                    <span>Fish
+                        per
+                        second
+                        ratio:</span>
+
+                    <input style="color:black;display:inline;" value={{settings.fishPerSecondRatio}}
+                        id="changeFishPerSecond" type="text" onkeyup="validateForm()" />
+                    <span class="errorMessage">Must
+                        be
+                        >0</span>
+                </div>
+                <div>
+                    <span>Missing threshold:</span>
+
+                    <input style="color:black;display:inline;" value={{settings.missingThreshold}} id="missingThreshold"
+                        type="text" onkeyup="validateForm()" />
+                    <span class="errorMessage">Must
+                        be
+                        >0</span>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <div id="saveClear">
+        <button type="submit" class="btn btn-danger" id="save">Save</button>
+        <button type="button" class="btn btn-primary" id="clear">Clear</button><br>
+        {{!-- <button type="button" class="btn btn-success" id="fishPropsRandomizer">Randomize fish props</button> --}}
+    </div>
+</div>
+
+
+<script src="js/settings.js"></script>

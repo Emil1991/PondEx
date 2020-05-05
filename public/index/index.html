@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script
+      src="http://code.jquery.com/jquery-3.3.1.js"
+      integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+      crossorigin="anonymous"
+    ></script>
+    <title>Pond</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div id="container">
+      <div id="mainBar" class="item">
+        <div id="playerScene" class="item">
+          <div id="environment" class="item">
+            <div id="action" class="item">
+              <img src="/images/puddle-md.png" alt="" id="pondImage" />
+
+              <div id="goldenFish">
+                <img src="/images/goldenfishMini.png" alt="fish" />
+              </div>
+              <div id="grass1">
+                <img src="/images/grass_PNG10866.png" alt="grass1" />
+              </div>
+              <div id="grass2">
+                <img src="/images/grass_PNG10866.png" alt="grass1" />
+              </div>
+
+              <div id="rock1">
+                <img src="/images/rock1.png" alt="rock1" />
+              </div>
+              <div id="rock2">
+                <img src="/images/rock1.png" alt="rock2" />
+              </div>
+              <div id="rock3">
+                <img src="/images/rock2.png" alt="rock3" />
+              </div>
+            </div>
+
+            <div id="fisherManLine">
+              <svg>
+                <line
+                  id="fisherManLineSvg"
+                  x1="900"
+                  y1="0"
+                  x2="500"
+                  y2="500"
+                  style="stroke:rgb(0,0,0,0.5)"
+                ></line>
+              </svg>
+            </div>
+          </div>
+          <div id="fishMan" class="item">
+            <div id="fishManSpace" class="item"></div>
+            <div id="fishManObject" class="item">
+              <img src="/images/fisherman2.png" alt="" id="fisherman" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="sideBar" class="item">
+        <button id="changePond">Change Pond position</button>
+        <div id="goldenFish2">
+          <img src="/images/goldenfishMini.png" alt="fish" />
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script type="text/javascript">
+    var gameStarted = true;
+    window.addEventListener("mousemove", e => {
+      // console.log("clientX:", e.clientX);
+      // console.log("clientY:", e.clientY);
+
+      if (
+        e.clientX <= $("#environment").offset().left ||
+        e.clientX >=
+          $("#environment").offset().left + $("#environment").outerWidth() ||
+        e.clientY <= $("#environment").offset().top ||
+        e.clientY >=
+          $("#environment").offset().top + $("#environment").outerHeight()
+      ) {
+        $("#fisherManLineSvg").attr("x2", $("#environment").outerWidth());
+        $("#fisherManLineSvg").attr("y2", $("#fishManSpace").outerHeight());
+      } else {
+        // $("#fisherManLineSvg").attr("x2", e.offsetX + 5);
+        // $("#fisherManLineSvg").attr("y2", e.offsetY - 20);
+        $("#fisherManLineSvg").attr(
+          "x2",
+          e.clientX - $("#environment").offset().left + 5
+        );
+        $("#fisherManLineSvg").attr(
+          "y2",
+          e.clientY - $("#environment").offset().top - 20
+        );
+      }
+    });
+
+    jQuery.cssNumber.gridRowStart = true;
+    jQuery.cssNumber.gridRowEnd = true;
+    jQuery.cssNumber.gridColumnStart = true;
+    jQuery.cssNumber.gridColumnEnd = true;
+    jQuery.cssNumber.gridColumnEnd = true;
+
+    function generateFish() {
+      let fishX = Math.floor(Math.random() * 30 + 30);
+      fishX += "%";
+      let fishY = Math.floor(Math.random() * 30 + 30);
+      fishY += "%";
+
+      $("#goldenFish").css("left", fishX);
+      $("#goldenFish").css("top", fishY);
+      $("#goldenFish").css("display", "inline");
+
+      setTimeout(() => {
+        $("#goldenFish").css("display", "none");
+        generateFish();
+      }, 1000);
+    }
+
+    // setInterval(() => {
+    //     generateFish();
+    // }, 4000);
+
+    let x1Position = $("#environment").outerWidth();
+    let y1Position = $("#fishManSpace").outerHeight();
+
+    console.log("fisherman height:");
+    console.log($("#fishManSpace").outerHeight());
+
+    $("#fisherManLineSvg").attr("x1", x1Position);
+    $("#fisherManLineSvg").attr("y1", y1Position);
+
+    $("#goldenFish").click(() => {
+      $("#goldenFish").fadeOut(300, () => {
+        $("#goldenFish2").fadeIn(200);
+      });
+    });
+
+    function changeGrassPosition() {
+      let startRow;
+      let endRow;
+      let startCol;
+      let endCol;
+
+      startRow = Math.floor(Math.random() * 35 + 1);
+      endRow = startRow + 60;
+      startCol = Math.floor(Math.random() * 35 + 1);
+      endCol = startCol + 60;
+
+      let grass1Left = Math.floor(Math.random() * 100);
+      let grass1Top = Math.floor(Math.random() * 100);
+
+      let grass2Left = Math.floor(Math.random() * (100 - grass1Left));
+      let grass2Top = Math.floor(Math.random() * (100 - grass1Top));
+
+      let rock1Left = grass1Left - 2;
+      let rock1Top = grass1Top - 2;
+
+      let rock2Left = grass2Left - 2;
+      let rock2Top = grass2Top - 2;
+
+      let rock3Left = Math.floor(Math.random() * 100);
+      let rock3Top = Math.floor(Math.random() * 100);
+
+      grass1Left += "%";
+      grass1Top += "%";
+      grass2Left += "%";
+      grass2Top += "%";
+
+      rock1Left += "%";
+      rock1Top += "%";
+      rock2Left += "%";
+      rock2Top += "%";
+      rock3Left += "%";
+      rock3Top += "%";
+
+      $("#action").css("grid-row-start", startRow);
+      $("#action").css("grid-row-end", endRow);
+
+      $("#action").css("grid-column-start", startCol);
+      $("#action").css("grid-column-end", endCol);
+
+      $("#grass1").css("left", grass1Left);
+      $("#grass1").css("top", grass1Top);
+      $("#rock1").css("left", rock1Left);
+      $("#rock1").css("top", rock1Top);
+      $("#grass2").css("left", grass2Left);
+      $("#grass2").css("top", grass2Top);
+      $("#rock2").css("left", rock2Left);
+      $("#rock2").css("top", rock2Top);
+      $("#rock3").css("left", rock3Left);
+      $("#rock3").css("top", rock3Top);
+    }
+
+    $("#changePond").click(() => {
+      changeGrassPosition();
+    });
+  </script>
+</html>

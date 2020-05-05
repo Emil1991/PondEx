@@ -1,0 +1,498 @@
+<div id="instructions">
+    <div id="contract">
+        <div>
+
+            <h1 style="text-align: left"><b>Welcome</b> </h1>
+            <h2 style="text-align: left">Thanks for showing intrest in this study.</h2>
+
+
+            <h2 style="text-align: left"><u>Please read the following before starting:</u><br>
+                <p style="font-size:0.8em;">
+                    <span>Please complete this game in one go. In other words, please only participate</span><br>
+                    <span>in this game, if you have 20 minutes that you can dedicate to it. Thank you</span><br>
+                    <span>very much.</span>
+                </p>
+            </h2>
+            <h2>
+                <u>Consent form</u><br>
+                <p style="font-size: 0.8em;">
+                    I consent to participate in this 20 minutes game.<br> I understand that all data will be kept
+                    confidential
+                    by the
+                    researcher. <br>My personal information will not be stored with the data. I am<br>
+                    free to withdraw at any time without giving a reason. I consent to the<br>
+                    publication of study results as long as the information is anonymous so that<br>
+                    no identification of participants can be made. The study has received<br>
+                    approval from the Research Ethics Committee by the Technion - Israel<br>
+                    Institute of Technology.
+                </p><br>
+                <p style="font-size: 0.8em;">
+                    I have read and understand the explanations and I voluntarily consent to<br>
+                    participate in this study.
+                </p>
+
+            </h2>
+            <button id="agree" class="btn btn-primary">I agree</button>
+
+        </div>
+    </div>
+    <div id="form">
+        <div id="page1" class="instructions">
+            <div style="position:relative">
+
+                <div id="fishLogo">
+                    <img src="/images/fishLogo.png" alt="logo">
+                </div>
+
+
+                <span style="font-weight:bold;font-size: 6.75em;text-shadow: 0px 0px 8px rgba(0,0,0,0.95);"> Welcome to
+                    the Fishing game!
+                </span><br>
+                <div id="idInput">
+                    <div class="input-group lead">
+                        <span class="input-group-addon inputlg">
+                            <span style="font-size: 16px">
+                                <b>ID:</b>
+                            </span>
+                        </span>
+
+                        <input type="text" id="subjectID" style="margin-right:10px;" class="form-control input-lg"
+                            placeholder="Enter your ID" />
+                    </div>
+                    <span id="idError"><b>Please enter a valid ID</b></span>
+                </div>
+
+                <button id="toPage2" type="button" class="btn btn-warning"
+                    style="position:relative;margin-top:3.5vh;font-size: 2.5em;font-weight:bold;  color: #5b3720;border:2.5px solid #5b3720 ;box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.3);">Instructions</button>
+                <div id="techLogo">
+                    <img src="/images/techlogo.png" alt="logo">
+                </div>
+                <br>
+
+            </div><br>
+
+
+
+        </div>
+    </div>
+
+    <div id="page2">
+        <div id="page2Content">
+            <div style="grid-column: 1/3;text-align:center;">
+                <span style="font-size: 2.75em;font-weight:bold;">
+                    <b>Instructions</b>
+                </span><br>
+                <span style="font-size: 2.5em;">
+                    page 1 / 4
+                </span>
+            </div>
+            <div class="textInFrame">
+                <h2 style="padding: 0.5em;line-height:150%;">
+                    <p>The fishing game will last <span id="gameTimeInstructions"></span> minutes. In this limited time
+                        your
+                        aim is to gain as many points as
+                        possible by catching fish.</p>
+                    <p> Fish is caught by clicking on it when it pops out of the water.</p>
+                </h2>
+            </div>
+
+            <div style="height:30vh;justify-self:end;">
+                <img src="/images/Instructions/image1.png" alt="image1"
+                    style="padding: 1em;position:relative;right:0;max-height: 100%;max-width:100%;">
+            </div>
+            <div class="textInFrame">
+                <h2 style="padding: 0.5em;line-height:150%;" class="textInFrame">
+                    <p> The game starts with a pond in which you can fish as long as you choose.</p>
+                </h2>
+            </div>
+
+            <div style="position:relative;">
+                <img src="/images/Instructions/image2.png" alt="image2"
+                    style="position:absolute;right:0;padding: 1em;max-height: 100%;max-width:100%;">
+            </div>
+
+        </div>
+
+        <div style="position:relative;margin-top:1.5em;">
+            <button id="toPage3" type="button" class="btn btn-warning"
+                style="position:relative;font-size: 2em;font-weight:bold;  color: #5b3720;border:2.5px solid #5b3720 ;box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.3);">next
+                page</button>
+        </div>
+    </div>
+    <div id="page3">
+        <div id="page3Content">
+            <div style="grid-column: 1/3;text-align:center;">
+                <span style="font-size: 2.75em;font-weight:bold;">
+                    <b>Instructions</b>
+                </span><br>
+                <span style="font-size: 2.5em;">
+                    page 2 / 4
+                </span>
+            </div>
+            <h2 style="padding: 0.5em;line-height:150%;">
+                <p>
+                    Whenever you choose, you can go to a new pond by clicking the &quot;go to a new pond&quot; button.
+                </p>
+            </h2>
+            <div style="position:relative;height:30vh;">
+                <img src="/images/Instructions/image3.png" alt="image3"
+                    style="max-height: 100%;max-width:100%;padding:1em;position:absolute;right:0;">
+            </div>
+            <h2 style="padding: 1em;line-height:150%;">
+                <p>
+                    It will take you between <span id="minIntroTime"></span> and <span id="maxIntroTime"></span> seconds
+                    to get to a new pond.
+                </p>
+            </h2>
+            <div style="height:30vh;position:relative;">
+                <img src="/images/Instructions/image4.png" alt="image4"
+                    style="position:absolute;right:0;padding: 1em;max-height: 100%;max-width:100%;">
+            </div>
+        </div>
+
+        <div style="position:relative;margin-top:1.5em;">
+            <button id="toPage4" type="button" class="btn btn-warning"
+                style="position:relative;font-size: 2em;font-weight:bold;  color: #5b3720;border:2.5px solid #5b3720 ;box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.3);">next
+                page</button>
+        </div>
+
+
+    </div>
+    <div id="page4">
+        <div id="page4Content">
+            <div style="text-align:center;">
+                <span style="font-size: 2.75em;font-weight:bold;">
+                    <b>Instructions</b>
+                </span><br>
+                <span style="font-size: 2.5em;">
+                    page 3 / 4
+                </span>
+            </div>
+            <h2 style="padding: 0.5em;line-height:150%;">
+                <p>Neither staying at a pond for too long, nor changing ponds too fast yields many points.<br>
+                    <span style="color:blue">Your aim is to decide thoughtfully when to change to a new pond.</span>
+                </p>
+            </h2>
+            <h2 style="padding: 0.5em;line-height:150%;">
+                <p>
+                    At each pond, when a fish pops out - you have to catch it.<br>
+                    <span style="color:red">During the game only <span id="fishMissedInstructions"></span> fish can be
+                        missed.</span><br>
+                    Otherwise, the game ends and the task is terminated.<br>
+                    Do not worry – fish appear slowly, and if you pay attention there is enough time to catch it all.
+                </p>
+            </h2>
+        </div>
+        <div style="position:absolute;margin-top:1.5em;left:50%;transform:translateX(-50%);">
+            <button id="toPage5" type="button" class="btn btn-warning"
+                style="font-size: 2em;font-weight:bold;color: #5b3720;border:2.5px solid #5b3720 ;box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.3);">
+                next page</button>
+        </div>
+
+    </div>
+    <div id="page5">
+        <div id="page5Content">
+            <div style="text-align:center;">
+                <span style="font-size: 2.75em;font-weight:bold;">
+                    <b>Instructions</b>
+                </span><br>
+                <span style="font-size: 2.5em;">
+                    page 4 / 4
+                </span>
+            </div>
+            <h2 style="justify-self: center;">
+                <b>Please answer a short quiz to proceed to the game:</b>
+            </h2>
+
+            <div style="text-align: start;" class="textInFrame">
+                <h2 style="position:relative;left:5vw;line-height:150%;">
+                    <div>
+                        <p>1.When a fish pops out of the water, what should you do?
+                            <br>
+                            <div class="tab">
+                                <input type="radio" name="question1" id="answer1">
+                                <span>a. I catch it</span>
+                                <br>
+                                <input type="radio" name="question1">
+                                <span>b. I choose whether to catch it or not</span>
+                                <br>
+                                <input type="radio" name="question1">
+                                <span>c. I switch to a new pond</span>
+                                <br>
+                                <input type="radio" name="question1">
+                                <span>d. I wait for another fish to pop out</span>
+                            </div>
+
+                        </p>
+                        <br>
+
+                        <p>2.When can you change a pond?
+                            <br>
+                            <div class="tab">
+                                <input type="radio" name="question2">
+                                <span>a. Only when there is no fish left in the previous pond I can press the &quot;go
+                                    to a
+                                    new
+                                    pond&quot; button</span>
+                                <br>
+                                <input type="radio" name="question2">
+                                <span>b. Only if I do not like the fish in the previous pond I can press the &quot;go
+                                    to a
+                                    new
+                                    pond&quot;
+                                    button</span>
+                                <br>
+                                <input type="radio" name="question2" id="answer2">
+                                <span>c. I can press the &quot;go to a new pond&quot; button whenever I choose</span>
+                                <br>
+                                <input type="radio" name="question2">
+                                <span>d. Only at the beginning of the game there is an option to press the &quot;go to a
+                                    new
+                                    pond&quot;
+                                    button</span>
+                            </div>
+                        </p><br>
+
+                        <p>3.What is the main goal of the game?
+                            <br>
+                            <div class="tab">
+                                <input type="radio" name="question3">
+                                <span>a. To gain as many points as possible</span>
+                                <br>
+                                <input type="radio" name="question3">
+                                <span>b. To decide thoughtfully when to switch between ponds</span>
+                                <br>
+                                <input type="radio" name="question3">
+                                <span>c. To enjoy the view around the pond</span>
+                                <br>
+                                <input type="radio" name="question3" id="answer3">
+                                <span>d. Answers a &amp; b are correct</span>
+                            </div>
+                        </p>
+                    </div>
+                </h2><br>
+                <div style="text-align: center">
+                    <span id="qError" style="visibility:hidden;color:red;font-size:1.5em; font-weight:bold;">The answer
+                        for question
+                        <span id="qNum"></span> is incorrect</span>
+                </div>
+
+            </div>
+        </div>
+        <div style="position:absolute;margin-top:1.5em;margin-bottom:1.5em;left:50%;transform:translateX(-50%);">
+            <button id="startGame" type="button" class="btn btn-warning"
+                style="font-size: 2em;font-weight:bold;color: #5b3720;border:2.5px solid #5b3720 ;box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.3);">
+                start game</button>
+        </div>
+    </div>
+
+</div>
+<div id="wrapper">
+    <div id="container" class="MainContainer2">
+        <div id="mainBar" class="item">
+
+            <div id="playerScene" class="item">
+                <div id="bottomTree" class="envBg">
+                    <img src="/images/tree3.png" alt="" />
+                </div>
+
+                <div id="topRightTree" class="envBg">
+                    <img src="/images/tree3.png" alt="" />
+                </div>
+
+                <div id="topLeftTree" class="envBg">
+                    <img src="/images/tree2.png" alt="" />
+                </div>
+
+                <div id="environment" class="item">
+
+
+                    <div id="background">
+
+
+                    </div>
+
+                    <div id="action" class="item">
+
+                        {{!-- <img src="/images/ponds/7.png" alt="" id="pondImage" /> --}}
+                        <img src="" alt="" id="pondImage" />
+
+                        <div id="goldenFish">
+                            <img src="/images/goldenfishMiniW.png" alt="fish" />
+                        </div>
+                        <div id="grayFish">
+                            <img src="/images/grayFishW.png" alt="fish" />
+                        </div>
+                        <div id="blueFish">
+                            <img src="/images/blueFishW.png" alt="fish" />
+                        </div>
+                        <div id="greenFish">
+                            <img src="/images/greenFishW.png" alt="fish" />
+                        </div>
+                        <div id="purpleFish">
+                            <img src="/images/purpleFishW.png" alt="fish" />
+                        </div>
+
+                        <div id="rock1">
+
+                        </div>
+                        <div id="rock2">
+
+                        </div>
+                        <div id="rock2">
+                            <img src="/images/rock2.png" alt="rock2" />
+                        </div>
+                    </div>
+
+                    <div id="fisherManLine">
+                        {{!-- fisherman Line  --}}
+                    </div>
+                </div>
+                <div id="fishMan" class="item">
+                    <div id="fishManSpace" class="item">
+                        <button id="changePond" type="button" class="btn btn-warning">Go to a new pond</button>
+                        <button id="missedButton" type="button" class="btn btn-warning">
+                            Missed fish:&nbsp;<span id="numberOfMissed">0</span>
+                        </button>
+                        {{!-- <span id="missedLabel">Missed fish:<span id="numberOfMissed">0</span></span> --}}
+                        {{!-- ///////////////////////////// DEV OPTION ///////////////////////////// --}}
+                        {{!-- <button id="stopPond" type="button" class="btn btn-danger">STOP</button>
+                    <button id="continuePond" type="button" class="btn btn-success">CON</button> --}}
+                        {{!-- ////////////////////////////////////////////////////////////////////// --}}
+                        {{!-- <span class="timer">
+                            <b><span id="timerMinutes"></span> : <span id="timerSeconds"></span></b>
+                        </span> --}}
+
+                    </div>
+                    <div id="fishManObject" class="item">
+                        <img src="/images/fisherman4.png" alt="" id="fisherman" />
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div id="sideBarContainer">
+            <div id="sideBar">
+                <div id="fishContainer">
+                    <div class='goldenSideBar'>
+                        <img src='/images/goldenfish.png' alt='fish' class='fishSideImage' />
+                        <div id='goldenCounter' class='fishCaughtCounter'> &nbsp;X1</div>
+                    </div>
+                    <div class='blueSideBar'>
+                        <img src='/images/blueFish.png' alt='fish' class='fishSideImage' />
+                        <div id='blueCounter' class='fishCaughtCounter'> &nbsp;X1</div>
+                    </div>
+                    <div class='greenSideBar'>
+                        <img src='/images/greenFish.png' alt='fish' class='fishSideImage' />
+                        <div id='greenCounter' class='fishCaughtCounter'> &nbsp;X1</div>
+                    </div>
+                    <div class='purpleSideBar'>
+                        <img src='/images/purpleFish.png' alt='fish' class='fishSideImage' />
+                        <div id='purpleCounter' class='fishCaughtCounter'> &nbsp;X1</div>
+                    </div>
+                    <div class='graySideBar'>
+                        <img src='/images/grayFish.png' alt='fish' class='fishSideImage' />
+                        <div id='grayCounter' class='fishCaughtCounter'> &nbsp;X1</div>
+                    </div>
+                </div>
+
+                <span id="fishCaughtLabel"
+                    style="font-size:2em;font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">
+                    <u>Fish caught:</u></span>
+                <span id="fishPriceLabel"
+                    style="font-size:2em;font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">
+                    <u>Fish price:</u></span>
+
+            </div>
+
+            <div id="fishesPrices">
+
+                {{!-- <span class='priceWrapper'>
+                    <img src='/images/goldenfish.png' alt='fish' style='height:38%'/><span>=5</span>
+                </span>
+                <span class='priceWrapper'>
+                    <img src='/images/bluefish.png' alt='fish' style='height:38%'/><span>=4</span>
+                </span> --}}
+                {{!-- <span class='priceWrapper'>
+                <img src='/images/greenfish.png' alt='fish' style='height:38%' /><span>=3</span>
+            </span> --}}
+                {{!-- <span class='priceWrapper'>
+                    <img src='/images/purplefish.png' alt='fish' style='height:38%'/><span>=2</span>
+                </span> --}}
+                {{!-- <span class='priceWrapper'>
+                    <img src='/images/grayfish.png' alt='fish' style='height:25%' /><span>=1</span>
+                </span> --}}
+
+                <div id="fishContainer">
+                    <div class='goldenSideBar'>
+                        <img src='/images/goldenfish.png' alt='fish' class='fishSideImage' />
+                        <div id='goldenCounter' class='fishCaughtCounter'> &nbsp;=&nbsp;<span id="goldenPrice"></span>
+                        </div>
+                    </div>
+                    <div class='blueSideBar'>
+                        <img src='/images/blueFish.png' alt='fish' class='fishSideImage' />
+                        <div id='blueCounter' class='fishCaughtCounter'> &nbsp;=&nbsp;<span id="bluePrice"></span></div>
+                    </div>
+                    <div class='greenSideBar'>
+                        <img src='/images/greenFish.png' alt='fish' class='fishSideImage' />
+                        <div id='greenCounter' class='fishCaughtCounter'> &nbsp;=&nbsp;<span id="greenPrice"></span>
+                        </div>
+                    </div>
+                    <div class='purpleSideBar'>
+                        <img src='/images/purpleFish.png' alt='fish' class='fishSideImage' />
+                        <div id='purpleCounter' class='fishCaughtCounter'> &nbsp;=&nbsp;<span id="purplePrice"></span>
+                        </div>
+                    </div>
+                    <div class='graySideBar'>
+                        <img src='/images/grayFish.png' alt='fish' class='fishSideImage' />
+                        <div id='grayCounter' class='fishCaughtCounter'> &nbsp;=&nbsp;<span id="grayPrice"></span></div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<div id="cover">
+    <div id="missedGameOver">
+        <p>GAME OVER</p>
+        <p>MISSED MORE THAN <span id="missingThreshold"></span> FISHES</p>
+    </div>
+    <div id="gameOver">
+        <p>GAME OVER</p>
+        <p><button id="toProlific" type="button" class="btn btn-danger">Click here</button></p>
+    </div>
+</div>
+<div id="map">
+    <div id="mapContainer">
+
+        {{!-- <div class="animation-container">
+                        <div class="lightning-container">
+                            <div class="lightning white"></div>
+                            <div class="lightning red"></div>
+                        </div>
+                        <div class="boom-container">
+                            <div class="shape circle big white"></div>
+                            <div class="shape circle white"></div>
+                            <div class="shape triangle big yellow"></div>
+                            <div class="shape disc white"></div>
+                            <div class="shape triangle blue"></div>
+                        </div>
+                        <div class="boom-container second">
+                            <div class="shape circle big white"></div>
+                            <div class="shape circle white"></div>
+                            <div class="shape disc white"></div>
+                            <div class="shape triangle blue"></div>
+                        </div>
+                    </div> --}}
+
+        <img src="/images/introWBG3.gif" alt="" />
+
+
+
+    </div>
+</div>
+
+<script src="js/game.js"></script>
