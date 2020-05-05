@@ -135,6 +135,7 @@ let pondTypesDist = {
 
 };
 let airTime=0;
+let randomFishIndex;
 
 
 
@@ -155,25 +156,25 @@ function setRandomPondProbs() {
 
 
 
-$.get("/settings", function (data) {
-  gameSettings = {
-    ...data
-  };
-
-  $("#gameTimeInstructions").text(gameSettings.gameTime);
-  $("#fishMissedInstructions").text(gameSettings.missingThreshold);
-  $("#minIntroTime").text(gameSettings.minIntroTime);
-  $("#maxIntroTime").text(gameSettings.maxIntroTime);
-  $("#missingThreshold").text(gameSettings.missingThreshold);
-
-  gameSettings.gameTime = gameSettings.gameTime * 60 * 1000;
-  gameSettings.gameTimeP = gameSettings.gameTime / 60 / 1000;
-
-  setRandomPondProbs();
-  // startGame();
-
-  // console.log("fetched Game Settings from admin:", gameSettings);
-});
+// $.get("/settings", function (data) {
+//   gameSettings = {
+//     ...data
+//   };
+//
+//   $("#gameTimeInstructions").text(gameSettings.gameTime);
+//   $("#fishMissedInstructions").text(gameSettings.missingThreshold);
+//   $("#minIntroTime").text(gameSettings.minIntroTime);
+//   $("#maxIntroTime").text(gameSettings.maxIntroTime);
+//   $("#missingThreshold").text(gameSettings.missingThreshold);
+//
+//   gameSettings.gameTime = gameSettings.gameTime * 60 * 1000;
+//   gameSettings.gameTimeP = gameSettings.gameTime / 60 / 1000;
+//
+//   setRandomPondProbs();
+//   // startGame();
+//
+//   // console.log("fetched Game Settings from admin:", gameSettings);
+// });
 
 //======================================================
 
@@ -244,14 +245,38 @@ $("#toPage5").click(() => {
 
 $("#startGame").click(() => {
   if (checkAnswers()) {
-    $("#page5").fadeOut(300, () => {
-      $("#wrapper").fadeIn(250, () => {
-        startGame();
-        // let clock = setInterval(() => {
-        //   clockTick();
-        // }, 1000);
+    $.get("/settings", function (data) {
+      gameSettings = {
+        ...data
+      };
+
+      $("#gameTimeInstructions").text(gameSettings.gameTime);
+      $("#fishMissedInstructions").text(gameSettings.missingThreshold);
+      $("#minIntroTime").text(gameSettings.minIntroTime);
+      $("#maxIntroTime").text(gameSettings.maxIntroTime);
+      $("#missingThreshold").text(gameSettings.missingThreshold);
+
+      gameSettings.gameTime = gameSettings.gameTime * 60 * 1000;
+      gameSettings.gameTimeP = gameSettings.gameTime / 60 / 1000;
+
+      setRandomPondProbs();
+      // startGame();
+
+      // console.log("fetched Game Settings from admin:", gameSettings);
+    }).done(()=>{
+      console.log("fetched Game Settings from admin:", gameSettings);
+      $("#page5").fadeOut(300, () => {
+        $("#wrapper").fadeIn(250, () => {
+          startGame();
+          // let clock = setInterval(() => {
+          //   clockTick();
+          // }, 1000);
+        });
       });
-    });
+    })
+        .fail(()=>{
+          alert("failed to fetch game setting,please restart");
+        });
   }
 });
 
@@ -338,8 +363,8 @@ function generateGiveUpTimeOutput() {
     ] +
     "\n" + [
       "TimeLeft",
-      (endGameTime - new Date() + 2000) / 1000
-    ] +
+      (endGameTime - new Date()) / 1000
+    ] + "\n" + ["Total air",airTime] +
     "\n" + [
       "PondOutcome",
       currentPondTotalOutcome
@@ -348,13 +373,12 @@ function generateGiveUpTimeOutput() {
       "TotalOutcome",
       totalPondsOutcome
     ] +
-    "\n"+["Total air",airTime]+
-      "\n";
+    "\n";
 }
 
 function generateOutput() {
   gameOutputBody += ["Type", currentPondType] +
-    "\n" + ["FishN", gameSettings["pond" + currentSelectedPond]] +
+    "\n" + ["FishN", currentPondInitialNumberOfFishes] +
     "\n" + ["Fish", numOfFishesUntilNow] +
     "\n" + ["Pond" + currentSelectedPond + "Fish" + numOfFishesUntilNow + "_FishType", currentFishType] +
     "\n" + ["Pond" +
@@ -397,8 +421,9 @@ function generateOutput() {
       "Fish" +
       numOfFishesUntilNow +
       "_TimeLeft",
-      (endGameTime - new Date() + 2000 + 400) / 1000
+      (endGameTime - new Date()) / 1000
     ] +
+    "\n"+ ["Air time",airTime] +
     "\n";
 
   // console.log("current game output body:", gameOutputBody);
@@ -429,7 +454,7 @@ function generateFirstFish() {
     selectedFish = "green";
     currentFishEV = currentPondFishProps.green.ev;
   } else {
-    let randomFishIndex = prng();
+    randomFishIndex = prng();
     // console.log("randomFishIndex generated:", randomFishIndex);
 
     if (randomFishIndex <= currentPondFishProps.golden.probability) {
@@ -618,7 +643,7 @@ function generateFish() {
     selectedFish = "green";
     currentFishEV = currentPondFishProps.green.ev;
   } else {
-    let randomFishIndex = prng();
+    randomFishIndex = prng();
     // console.log("randomFishIndex generated:", randomFishIndex);
 
     if (randomFishIndex <= currentPondFishProps.golden.probability) {
@@ -924,8 +949,9 @@ $("#goldenFish").click(() => {
   lockFishClick = true;
   clickedOnFish = true;
   currentFishCatchTime = new Date() - currentFishShowUp;
+  lastFadeOff = new Date();
+
   $("#goldenFish").fadeOut(0, () => {
-    lastFadeOff = new Date();
     if (fishCounter["golden"] == 0) { //no golden fish had been caught
       // console.log("golden is empty. appending");
       // $("#fishContainer").append(
@@ -950,9 +976,9 @@ $("#blueFish").click(() => {
   lockFishClick = true;
   clickedOnFish = true;
   currentFishCatchTime = new Date() - currentFishShowUp;
-
+  lastFadeOff = new Date();
   $("#blueFish").fadeOut(0, () => {
-    lastFadeOff = new Date();
+
 
     if (fishCounter["blue"] == 0) { //no blue fish had been caught
       // console.log("blue is empty. appending");
@@ -980,9 +1006,9 @@ $("#greenFish").click(() => {
   lockFishClick = true;
   clickedOnFish = true;
   currentFishCatchTime = new Date() - currentFishShowUp;
+  lastFadeOff = new Date();
 
   $("#greenFish").fadeOut(0, () => {
-    lastFadeOff = new Date();
 
     if (fishCounter["green"] == 0) { //no green fish had been caught
       // console.log("green is empty. appending");
@@ -1010,9 +1036,9 @@ $("#purpleFish").click(() => {
   lockFishClick = true;
   clickedOnFish = true;
   currentFishCatchTime = new Date() - currentFishShowUp;
+  lastFadeOff = new Date();
 
   $("#purpleFish").fadeOut(0, () => {
-    lastFadeOff = new Date();
 
     if (fishCounter["purple"] == 0) { //no purple fish had been caught
       // console.log("purple is empty. appending");
@@ -1040,9 +1066,9 @@ $("#grayFish").click(() => {
   lockFishClick = true;
   clickedOnFish = true;
   currentFishCatchTime = new Date() - currentFishShowUp;
+  lastFadeOff = new Date();
 
   $("#grayFish").fadeOut(0, () => {
-    lastFadeOff = new Date();
     if (fishCounter["gray"] == 0) { //no gray fish had been caught
       // console.log("gray is empty. appending");
       // $("#fishContainer").append(
@@ -1092,7 +1118,7 @@ function changeTrees() {
 }
 
 function changeCurrentPondGameProps(pondNumber,pondType,numberOfFishes,veryFirstPond) {
-  changeCurrentPondGamePropsSetTimeOut = setTimeout(() => {
+
     // console.log("pondNumber", pondNumber);
     currentPond = pondNumber;
     // console.log("current pond number:",currentPond);
@@ -1109,7 +1135,7 @@ function changeCurrentPondGameProps(pondNumber,pondType,numberOfFishes,veryFirst
 
     historyOfPonds+=[`Pond${pondNumber}_Type`,pondType]+ "\n" + [`Pond${pondNumber}_#Fishes`,numberOfFishes]+"\n";
 
-    lastFadeOff = new Date();
+    // lastFadeOff = new Date();
 
     if (currentPondType == "N") {
       fishArray = ["green"];
@@ -1209,7 +1235,6 @@ function changeCurrentPondGameProps(pondNumber,pondType,numberOfFishes,veryFirst
     // lastFadeOff = new Date();
     // generateFish();
 
-  }, 2000);
 }
 
 function changePond(veryFirstPond) {
@@ -1252,8 +1277,8 @@ function clearAllSetTimeOutBeforeGenerateNewPond() {
 
 $("#changePond").click(() => {
 
-  pondTimeUntilNow = new Date() - currentPondStartingTime;
   giveUpTime = new Date() - lastFadeOff;
+  pondTimeUntilNow = new Date() - currentPondStartingTime;
 
   if (fishApperSetTimeOut) {
     clearTimeout(fishApperSetTimeOut);
@@ -1300,7 +1325,7 @@ $("#changePond").click(() => {
         sendOutputToServer();
         // console.log("sending output time:", new Date() - timeBeforeSend);
 
-      }, 50);
+      }, 10);
 
       /////////////////////////////////////
       $("#mapContainer").css("display", "flex");
